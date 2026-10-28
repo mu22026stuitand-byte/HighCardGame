@@ -7,9 +7,9 @@ using namespace std;
 Player::Player()
 {
 	number = 0;
-	Player::Player("NoName");
+	Player::setName("NoName");
 }
-Player::Player(const char* newName)
+void::Player::setName(const char* newName)
 {
 	if (newName == nullptr)
 	{
