@@ -1,28 +1,36 @@
 ﻿#include <iostream>
+#include<ctime>
+#include"HughCard.h"
 using namespace std;
 
-class Player
-{
-private:
-	int umber;
-	const char name[];
-	
-public:
-	Player();//コンストラクタ
-	void hit();//内部で乱数により数を決定して保持
-	int getNumber();//内部で決定した数を返す
-	void showNumber(); //保持している数を表示する関数
-};
 
-void hit()//内部で乱数により数を決定して保持
+Player::Player()
 {
-
+	number = 0;
+	Player::Player("NoName");
 }
-int getNumber()//内部で決定した数を返す
+Player::Player(const char* newName)
 {
-	return 1;
+	if (newName == nullptr)
+	{
+		return;
+	}
+	strncpy_s(name, newName, sizeof(newName) - 1);
+	name[sizeof(name) - 1] = '\0';
 }
-void showNumber() //保持している数を表示する関数
+void Player::hit()//内部で乱数により数を決定して保持
 {
-
+	number = rand() % 13 + 1;//1～13のどれか
+}
+int Player::getNumber()//内部で決定した数を返す
+{
+	return number;
+}
+void Player::showNumber() //保持している数を表示する関数
+{
+	cout << number;
+}
+void Player::showName()
+{
+	cout << name;
 }
