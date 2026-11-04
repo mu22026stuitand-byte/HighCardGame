@@ -1,26 +1,39 @@
 ﻿#include <iostream>
 #include<ctime>
-#include"HughCard.h"
+#include"Player.h"
 using namespace std;
 
 
 Player::Player()
 {
 	number = 0;
-	Player::setName("NoName");
+	
+	Player("Noname");
 }
-void::Player::setName(const char* newName)
+Player::Player(const char* newName)
 {
+	number = 0;
 	if (newName == nullptr)
 	{
 		return;
 	}
-	strncpy_s(name, newName, sizeof(newName) - 1);
-	name[sizeof(name) - 1] = '\0';
+	else
+	{
+	name = newName;
+	}
+	
 }
+
 void Player::hit()//内部で乱数により数を決定して保持
 {
-	number = rand() % 13 + 1;//1～13のどれか
+	do
+	{
+		provSuit  = rand() % 4;
+		provNumber = rand() % 13;//1～13のどれか
+	} while (!cards[provSuit][provNumber]);
+	cards[provSuit][provNumber] = true;
+	suit = provSuit;
+	number = provNumber;
 }
 int Player::getNumber()//内部で決定した数を返す
 {
