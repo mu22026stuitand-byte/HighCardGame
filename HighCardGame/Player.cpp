@@ -7,12 +7,17 @@ using namespace std;
 Player::Player()
 {
 	number = 0;
-	
+	suit = 0;
+	provSuit = 0;
+	provNumber = 0;
 	Player("Noname");
 }
 Player::Player(const char* newName)
 {
 	number = 0;
+	suit = 0;
+	provSuit = 0;
+	provNumber = 0;
 	if (newName == nullptr)
 	{
 		return;
@@ -29,8 +34,9 @@ void Player::hit()//内部で乱数により数を決定して保持
 	do
 	{
 		provSuit  = rand() % 4;
-		provNumber = rand() % 13;//1～13のどれか
+		provNumber = rand() % 13;//0～12のどれか
 	} while (!cards[provSuit][provNumber]);
+
 	cards[provSuit][provNumber] = true;
 	suit = provSuit;
 	number = provNumber;
