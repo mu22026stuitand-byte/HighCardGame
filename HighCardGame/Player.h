@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include"Shoe.h"
 class Player:
-protected Shoe
+public Shoe
 {
 private:
 	
